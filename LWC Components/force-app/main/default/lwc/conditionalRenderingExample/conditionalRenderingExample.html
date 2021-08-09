@@ -1,0 +1,12 @@
+<template>
+    <lightning-input type="checkbox" label="Show Div"></lightning-input>
+
+    <template if:true={display}>
+      <div>I am Here</div>
+    </template>
+
+    <template for:each={cityList} for:item="city">
+        <p key={city}>{city}</p>
+    </template>
+    
+</template>

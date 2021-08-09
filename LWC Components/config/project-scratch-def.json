@@ -1,0 +1,14 @@
+{
+  "orgName": "funbook company",
+  "edition": "Developer",
+  "features": [],
+  "hasSampleData":true,
+  "settings": {
+    "orgPreferenceSettings": {
+      "s1DesktopEnable": true
+    }
+    
+  }
+   
+  
+}
