@@ -1,0 +1,12 @@
+{
+  "orgName": "funbook company",
+  "edition": "Developer",
+  "features": [],
+  "hasSampleData": true,
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    }
+   
+  }
+}

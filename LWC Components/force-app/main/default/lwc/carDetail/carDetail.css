@@ -1,0 +1,18 @@
+.label {
+    font-weight: bold;
+}
+
+.carproperty {
+    margin-bottom: 4px;
+}
+
+.imageview {
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 200px;
+        margin: 5px;
+}
+
+.car {
+    border-radius: 5px;
+}
