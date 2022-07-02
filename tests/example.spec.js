@@ -23,26 +23,22 @@ test('Case Search', async({page}) => {
           var summansRemoved = innerText.replace("SUMMONS RETURNED INDICATING SERVICE","").trim();
           var onKeywordRemove = summansRemoved.replace("ON","").trim();
           summans.push(onKeywordRemove);
-        }
-        
+        } 
       }
+      var defendentName =[];
+      var summansReturnedDate = [];
       for( var i = 0; i < summans.length; i++) {
-        var splitNameAndDate = summans[i].split(" ");
-        var patt1 = /[0-9]/g;
-        var patt2 = /[a-zA-Z]/g;
-        var defname = [];
-        var splitName = "khksj"
-        if(splitName == patt2 ){
-          console.log(splitName);
+        var splitdate = summans[i].split(/(\d+)/);
+        defendentName.push(splitdate[0]);
+        var removeName = splitdate.shift();
+        var getDate = splitdate.toString();
+        var date = "";
+        if(getDate[i] != ","){
+          date += getDate[i];
         }
-        
-        var date = summans[i].match(patt1);
-        var name = summans[i].match(patt2);
-        console.log("name : "+name+" - date :"+date);
+        console.log(date);
       }
       var sorting = summans.sort();
       console.log(sorting);
-
-    }
-    
+    } 
 })
