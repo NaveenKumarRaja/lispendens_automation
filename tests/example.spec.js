@@ -13,6 +13,35 @@ test('Case Search', async({page}) => {
     var caseStatus = await closedStatus.textContent();
     if(caseStatus.toString().trim() == "OPEN"){
       console.log("OPEN");
+      var summansReturns = await page.locator("div[class='caseDisplayTable'] >> table >> tbody >>tr >> td[class='docketDescription']");
+      var countOfDocketDescription = await summansReturns.count();
+      var summans = []
+      for(var i = 0; i < countOfDocketDescription;i++) {
+        const element = await summansReturns.nth(i);
+        const innerText = await element.innerText();
+        if(innerText.includes("SUMMONS RETURNED INDICATING SERVICE")){
+          var summansRemoved = innerText.replace("SUMMONS RETURNED INDICATING SERVICE","").trim();
+          var onKeywordRemove = summansRemoved.replace("ON","").trim();
+          summans.push(onKeywordRemove);
+        }
+        
+      }
+      for( var i = 0; i < summans.length; i++) {
+        var splitNameAndDate = summans[i].split(" ");
+        var patt1 = /[0-9]/g;
+        var patt2 = /[a-zA-Z]/g;
+        var defname = [];
+        var splitName = "khksj"
+        if(splitName == patt2 ){
+          console.log(splitName);
+        }
+        
+        var date = summans[i].match(patt1);
+        var name = summans[i].match(patt2);
+        console.log("name : "+name+" - date :"+date);
+      }
+      var sorting = summans.sort();
+      console.log(sorting);
 
     }
     
