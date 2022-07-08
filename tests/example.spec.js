@@ -2,6 +2,9 @@ const {test,expect} = require('@playwright/test');
 
 test('Case Search', async({page}) => {
   test.slow();
+  var defendentName =[];
+  var summansReturnedDate = [];
+  const defendentNameAndSummansReturnedDate = new Map();
   await page.goto('https://core.duvalclerk.com/CoreCms.aspx');
   await page.type("id=c_UsernameTextBox", "sean@ozellrealestate.com");
   await page.type("id=c_PasswordTextBox", "RealEstate45!");
@@ -12,7 +15,6 @@ test('Case Search', async({page}) => {
     var closedStatus = page.locator("div[class='caseDisplayTable caseSummary'] >> table >> tbody >> tr >> nth=1 >> td >> nth=1");
     var caseStatus = await closedStatus.textContent();
     if(caseStatus.toString().trim() == "OPEN"){
-      console.log("OPEN");
       var summansReturns = await page.locator("div[class='caseDisplayTable'] >> table >> tbody >>tr >> td[class='docketDescription']");
       var countOfDocketDescription = await summansReturns.count();
       var summans = []
@@ -25,20 +27,16 @@ test('Case Search', async({page}) => {
           summans.push(onKeywordRemove);
         } 
       }
-      var defendentName =[];
-      var summansReturnedDate = [];
-      for( var i = 0; i < summans.length; i++) {
+      for( var i = 0; i < summans.length; i++) {  
         var splitdate = summans[i].split(/(\d+)/);
         defendentName.push(splitdate[0]);
         var removeName = splitdate.shift();
-        var getDate = splitdate.toString();
-        var date = "";
-        if(getDate[i] != ","){
-          date += getDate[i];
-        }
-        console.log(date);
+        var getDate = splitdate.toString().replace(/,/g,'');
+        var getDate = getDate.replace(/,/g,"");
+        var removesymble = getDate.replace(" @","");
+        summansReturnedDate.push(removesymble);
       }
-      var sorting = summans.sort();
-      console.log(sorting);
     } 
+    console.log(defendentName);
+    console.log(summansReturnedDate);
 })
